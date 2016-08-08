@@ -12,13 +12,11 @@ evaluateRPN = head . foldl process [] . words
         process stack number = read number : stack
         
 
-readInt :: String -> Int
-readInt = read
 
 playMoreOrLess :: Int -> Int -> IO()
 playMoreOrLess answer count = do
     putStrLn "Give a number :"
-    guess <- fmap readInt getLine
+    guess <- fmap read getLine
     if (guess == answer) then putStrLn $ "Victory in " ++ (show count) ++ " guesses !"
         else do
             putStrLn $ if (guess > answer) then "Too big" else "Too small"
